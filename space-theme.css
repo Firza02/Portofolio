@@ -1,0 +1,167 @@
+/* =====================================================================
+   SPACE THEME — additive stylesheet
+   =====================================================================
+   Tujuan: memberi nuansa luar angkasa (loading orbit, starfield canvas,
+   nebula, aksen warna hangat) TANPA mengubah style.css asli.
+
+   Cara melepas tema ini sepenuhnya:
+   1. Hapus baris <link rel="stylesheet" href="space-theme.css"> di index.html
+   2. Hapus baris <script src="space-loader.js" defer></script> di index.html
+   3. Hapus blok HTML yang ditandai
+      "SPACE THEME: markup START" ... "SPACE THEME: markup END" di index.html
+   style.css dan script.js asli tidak disentuh sama sekali oleh file ini.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1) PALET WARNA — tetap biru malam sebagai dasar, menambahkan SATU
+      warna aksen hangat untuk tombol & tautan (menggantikan peran
+      --blue sebagai warna interaktif/aksen di style.css).
+      --blue dipertahankan sebagai variabel (dipakai luas di style.css
+      untuk tombol, link aktif, border aksen, dsb) tapi nilainya diganti
+      hangat di sini. Warna dekoratif nebula/planet TIDAK memakai
+      var(--blue) (mereka pakai rgba hardcode di style.css), sehingga
+      tetap biru/ungu — "night sky" tetap terasa.
+      - --accent-warm-text : untuk teks/border/link (kontras tinggi di
+        atas biru malam, ~11:1).
+      - --accent-warm-solid: untuk latar tombol solid berteks putih
+        (~5:1, memenuhi WCAG AA teks normal).
+   --------------------------------------------------------------------- */
+:root {
+  --accent-warm-text: #fbbf24;   /* amber-400 */
+  --accent-warm-solid: #b45309;  /* amber-700 */
+  --accent-warm-solid-hover: #c2680f;
+
+  /* var(--blue) dipakai style.css untuk SEMUA elemen interaktif
+     (tombol, link aktif, border aksen) -> ganti ke aksen hangat */
+  --blue: var(--accent-warm-text);
+
+  /* Kartu/section dibuat sedikit transparan (bukan solid, bukan nyaris
+     tembus pandang) supaya starfield tetap terasa di baliknya, namun
+     kontras teks tetap terjaga karena digabung dengan backdrop-filter
+     blur pada bagian 5. */
+  --card: rgba(10, 18, 38, 0.6);
+}
+
+/* Tombol solid (background langsung var(--blue)) perlu teks putih di
+   atas warna hangat yang lebih gelap agar kontras memenuhi AA — override
+   tepat sasaran untuk elemen tombol solid di style.css. */
+.btn-primary,
+.back-to-top,
+.proj-modal-action.primary,
+.cert-modal-btn.primary {
+  background: var(--accent-warm-solid) !important;
+}
+.btn-primary:hover,
+.back-to-top:hover,
+.proj-modal-action.primary:hover,
+.cert-modal-btn.primary:hover {
+  background: var(--accent-warm-solid-hover) !important;
+}
+
+/* Companion glow/background hangat untuk elemen yang di style.css asli
+   memakai rgba(59,130,246,*) hardcode berdampingan dengan var(--blue)
+   (badge, hover state, chip, modal) — diselaraskan ke nada hangat yang
+   sama supaya tidak bentrok dengan teks/border yang sudah ikut
+   var(--blue) di atas. */
+.btn-primary { box-shadow: 0 4px 24px rgba(180,83,9,0.4); }
+.btn-primary:hover { box-shadow: 0 8px 32px rgba(180,83,9,0.55); }
+.back-to-top { box-shadow: 0 8px 24px rgba(180,83,9,0.45); }
+.back-to-top:hover { box-shadow: 0 10px 30px rgba(180,83,9,0.6); }
+.social-btn:hover { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.4); }
+.fc-dev .fc-icon { background: rgba(251,191,36,0.2); }
+.stat-card:hover { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.05); }
+.tl-card:hover { border-color: rgba(251,191,36,0.4); }
+.ci-icon { background: rgba(251,191,36,0.15); }
+.form-group input:focus, .form-group textarea:focus { border-color: rgba(251,191,36,0.5); }
+.proj-modal-tag { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.3); }
+.proj-modal-action.primary { box-shadow: 0 4px 14px rgba(180,83,9,0.4); }
+.proj-modal-action.primary:hover { box-shadow: 0 6px 20px rgba(180,83,9,0.55); }
+.proj-modal-nopdf-icon { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.2); }
+.cert-view-btn { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); }
+.cert-view-btn:hover { background: rgba(251,191,36,0.2); border-color: rgba(251,191,36,0.55); }
+.cert-modal-btn.primary { box-shadow: 0 4px 16px rgba(180,83,9,0.35); }
+.cert-modal-btn.primary:hover { box-shadow: 0 8px 24px rgba(180,83,9,0.5); }
+.cert-tab.active { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.5); }
+.cert-card:hover { border-color: rgba(251,191,36,0.4); }
+.footer-link:hover { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.4); }
+/* cert-icon/.cert-modal-icon/.tl-logo/.hi-logo kini menampilkan logo asli
+   (latar off-white bulat), jadi aksen hangat cukup diterapkan ke ring-nya. */
+.cert-modal-icon { border-color: rgba(251,191,36,0.3); box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
+.cert-icon { border-color: rgba(251,191,36,0.3); box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
+.tl-logo { border-color: rgba(251,191,36,0.3); box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
+.hi-logo { border-color: rgba(251,191,36,0.3); box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
+
+/* Progress bar & loading bar sebelumnya gradasi cyan→blue→violet;
+   diganti gradasi hangat tunggal supaya konsisten dengan "satu warna
+   aksen hangat" alih-alih bentrok dengan amber di tengah gradasi biru. */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--accent-warm-text), var(--accent-warm-solid));
+}
+
+/* ---------------------------------------------------------------------
+   2) TIPOGRAFI
+      Judul besar di style.css sudah memakai 'Syne' (display, tegas,
+      weight 700-800) dan isi memakai 'DM Sans' (sans-serif nyaman
+      dibaca) — jadi struktur fontnya sudah sesuai arahan. Di sini hanya
+      menegaskan sedikit tracking pada judul agar terasa lebih "tegas".
+   --------------------------------------------------------------------- */
+.hero-name, .section-title, .welcome-sub { letter-spacing: -0.01em; }
+
+/* ---------------------------------------------------------------------
+   3) KARTU TRANSPARAN TAPI TETAP TERBACA
+      --card sudah diset semi-transparan di bagian 1. Tambahkan
+      backdrop-filter blur supaya starfield di baliknya jadi lembut
+      (tidak mengganggu kontras teks) alih-alih tajam menembus kartu.
+   --------------------------------------------------------------------- */
+.tl-card, .stat-card, .highlight-row, .skill-cat, .contact-row,
+.cert-card, .cert-tab, .footer-link, .social-btn, .nav-toggle,
+.form-group input, .form-group textarea, .cert-modal-btn.secondary {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------------------------------------------------------------------
+   4) STARFIELD CANVAS (digambar oleh space-loader.js di #spaceCanvas)
+   --------------------------------------------------------------------- */
+.space-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Nebula ambient di belakang seluruh halaman — murni dekoratif, tidak
+   memakai var(--blue) sehingga tetap berwarna biru/ungu malam walau
+   aksen tombol/tautan berubah hangat. */
+body::before {
+  content: '';
+  position: fixed; top: -15%; left: -15%; width: 130%; height: 130%; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(124,58,237,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 20% 80%, rgba(96,165,250,0.32) 0%, transparent 58%),
+    radial-gradient(ellipse 40% 40% at 90% 70%, rgba(6,182,212,0.16) 0%, transparent 50%);
+  pointer-events: none;
+  animation: bgDrift 32s ease-in-out infinite alternate;
+}
+
+@keyframes bgDrift {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(4%, -3%); }
+  100% { transform: translate(-3%, 4%); }
+}
+
+/* ---------------------------------------------------------------------
+   5) AKSESIBILITAS GERAK
+      Menghormati prefers-reduced-motion: animasi dekoratif dimatikan.
+      Starfield canvas (space-loader.js) juga membaca preferensi ini
+      secara terpisah di JS untuk berhenti bergerak.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .skill-tag {
+    animation: none !important;
+  }
+}
