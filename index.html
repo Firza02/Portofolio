@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muhammad Firza Pahlevi — Portfolio</title>
-<meta name="description" content="Portfolio Muhammad Firza Pahlevi — Fullstack Developer, Application Developer, dan Data Analyst.">
+<meta name="description" content="Portfolio of Muhammad Firza Pahlevi — Fullstack Developer, Application Developer, and Data Analyst.">
 <meta name="theme-color" content="#060d1f">
 <link rel="stylesheet" href="style.css">
+<!-- ===== SPACE THEME: stylesheet (remove this line to revert the look) ===== -->
+<link rel="stylesheet" href="space-theme.css">
 <script src="script.js" defer></script>
+<!-- ===== SPACE THEME: behaviour (remove this line to revert the look) ===== -->
+<script src="space-loader.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- ===== SPACE THEME: markup START (remove this block to revert the look) ===== -->
+<canvas class="space-canvas" id="spaceCanvas"></canvas>
+<!-- ===== SPACE THEME: markup END ===== -->
 <div class="scroll-progress" id="scrollProgress"></div>
-<button class="back-to-top" id="backToTop" title="Kembali ke atas" aria-label="Kembali ke atas">
+<button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">
   <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
 </button>
 <!-- NAV -->
@@ -26,7 +33,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certifications</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" title="Menu" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navLinks">
+  <button class="nav-toggle" id="navToggle" title="Menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
@@ -135,7 +142,7 @@
     <div class="stat-icon">🏅</div>
     <div>
       <div class="stat-num">4+</div>
-      <div class="stat-label">Certifications</div>
+      <div class="stat-label">Certifications & Achievements</div>
     </div>
   </div>
   <!--
@@ -156,38 +163,6 @@
   </div>
 </div>
 
-<!-- TECH BAR -->
-<div class="tech-bar">
-  <div class="tech-inner">
-    <span class="tech-label">Tech Stack</span>
-    <div class="tech-marquee">
-      <div class="tech-track">
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/php.svg" alt="" loading="lazy">PHP</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/javascript.svg" alt="" loading="lazy">JavaScript</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/laravel.svg" alt="" loading="lazy">Laravel</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/outsystems-mark.png" alt="" loading="lazy"><span class="tech-pill-label">OutSystems</span></span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/mysql.svg" alt="" loading="lazy">MySQL</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
-        <span class="tech-pill"><img class="tech-icon" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
-        <!-- duplicated for seamless infinite loop -->
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/php.svg" alt="" loading="lazy">PHP</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/javascript.svg" alt="" loading="lazy">JavaScript</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/laravel.svg" alt="" loading="lazy">Laravel</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/outsystems-mark.png" alt="" loading="lazy"><span class="tech-pill-label">OutSystems</span></span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/mysql.svg" alt="" loading="lazy">MySQL</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
-        <span class="tech-pill" aria-hidden="true"><img class="tech-icon" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ABOUT -->
 <section id="about">
   <p class="section-label">Who I Am</p>
@@ -198,10 +173,10 @@
       <p>I believe that data is more than just numbers; it tells meaningful stories and reveals valuable insights. I am passionate about exploring data, identifying patterns, and transforming findings into actionable insights that support informed business decisions.</p>
     </div>
     <div class="about-highlights">
-      <div class="highlight-row"><span class="hi">🎓</span><div><strong>Bachelor of Information Systems</strong><br><span>UPN Veteran Jawa Timur</span></div></div>
-      <div class="highlight-row"><span class="hi">🏢</span><div><strong>Application Developer Intern — BCA</strong><br><span>OutSystems Developer · 2025</span></div></div>
+      <div class="highlight-row"><span class="hi hi-logo"><img src="assets/logo-upn.png" alt="UPN Veteran Jawa Timur"></span><div><strong>Bachelor of Information Systems</strong><br><span>UPN Veteran Jawa Timur</span></div></div>
+      <div class="highlight-row"><span class="hi hi-logo"><img src="assets/logo-bca.png" alt="Bank Central Asia"></span><div><strong>Application Developer Intern — BCA</strong><br><span>OutSystems Developer · 2025</span></div></div>
       <div class="highlight-row"><span class="hi">⭐</span><div><strong>Grade Point Average</strong><br><span>3.85/4.00 (Cum Laude)</span></div></div>
-      <div class="highlight-row"><span class="hi">📍</span><div><strong>Surabaya, Indonesia</strong><br><span>Open to remote & relocation</span></div></div>
+      <div class="highlight-row"><span class="hi hi-logo"><img src="assets/logo-surabaya.svg" alt="Surabaya"></span><div><strong>Surabaya, Indonesia</strong><br><span>Open to remote & relocation</span></div></div>
     </div>
   </div>
 </section>
@@ -211,79 +186,128 @@
   <p class="section-label">Expertise</p>
   <h2 class="section-title">Skills</h2>
   <div class="skills-grid">
-    <div class="skill-cat">
-      <div class="skill-cat-title">⟨/⟩ Development</div>
-      <div class="skill-tags">
-        <span class="skill-tag">PHP</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Laravel</span>
-        <span class="skill-tag">CodeIgniter</span>
-        <span class="skill-tag">Flask</span>
-        <span class="skill-tag">OutSystems</span>
-        <span class="skill-tag">HTML5</span>
-        <span class="skill-tag">CSS3</span>
-        <span class="skill-tag">REST API</span>
-        <span class="skill-tag">API Integration</span>
+    <div class="skill-cat" style="--cat-c:#3b82f6">
+      <div class="skill-cat-title"><span class="scat-icon">⟨/⟩</span> Development</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/php.svg" alt="" loading="lazy">PHP</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/javascript.svg" alt="" loading="lazy">JavaScript</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/java.svg" alt="" loading="lazy">Java</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/kotlin.svg" alt="" loading="lazy">Kotlin</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/laravel.svg" alt="" loading="lazy">Laravel</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/codeigniter.svg" alt="" loading="lazy">CodeIgniter</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/flask.svg" alt="" loading="lazy">Flask</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/outsystems-mark.png" alt="" loading="lazy">OutSystems</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">RA</span>REST API</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">AI</span>API Integration</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/php.svg" alt="" loading="lazy">PHP</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/javascript.svg" alt="" loading="lazy">JavaScript</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/java.svg" alt="" loading="lazy">Java</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/kotlin.svg" alt="" loading="lazy">Kotlin</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/laravel.svg" alt="" loading="lazy">Laravel</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/codeigniter.svg" alt="" loading="lazy">CodeIgniter</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/flask.svg" alt="" loading="lazy">Flask</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/outsystems-mark.png" alt="" loading="lazy">OutSystems</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">RA</span>REST API</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">AI</span>API Integration</span>
+        </div>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">📊 Data Analytics</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Pandas</span>
-        <span class="skill-tag">NumPy</span>
-        <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Excel</span>
-        <span class="skill-tag">EDA</span>
-        <span class="skill-tag">ETL</span>
-        <span class="skill-tag">Data Visualization</span>
-        <span class="skill-tag">SQL</span>
+    <div class="skill-cat" style="--cat-c:#06b6d4">
+      <div class="skill-cat-title"><span class="scat-icon">📊</span> Data Analytics</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
+        </div>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">🧠 AI / NLP</div>
-      <div class="skill-tags">
-        <span class="skill-tag">IndoBERT</span>
-        <span class="skill-tag">Transformers</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">NLP</span>
-        <span class="skill-tag">Sentiment Analysis</span>
+    <div class="skill-cat" style="--cat-c:#7c3aed">
+      <div class="skill-cat-title"><span class="scat-icon">🧠</span> AI / NLP</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
+        </div>
       </div>
     </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">🗃️ Database</div>
-      <div class="skill-tags">
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">Database Design</span>
-        <span class="skill-tag">ERD</span>
-        <span class="skill-tag">Normalization</span>
-        <span class="skill-tag">SQL Query</span>
+    <div class="skill-cat" style="--cat-c:#f59e0b">
+      <div class="skill-cat-title"><span class="scat-icon">🗃️</span> Database</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/mysql.svg" alt="" loading="lazy">MySQL</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/mssql.svg" alt="" loading="lazy">SQL Server</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">DB</span>Database Design</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ER</span>ERD</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">NM</span>Normalization</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SQ</span>SQL Query</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/mysql.svg" alt="" loading="lazy">MySQL</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/mssql.svg" alt="" loading="lazy">SQL Server</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">DB</span>Database Design</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ER</span>ERD</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NM</span>Normalization</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SQ</span>SQL Query</span>
+        </div>
       </div>
     </div>
-    <!--
-    <div class="skill-cat">
-      <div class="skill-cat-title"></div>
-      <div class="skill-tags">
-        <span class="skill-tag"></span>
-        <span class="skill-tag"></span>
-        <span class="skill-tag"></span>
-        <span class="skill-tag"></span>
-      </div>
-    </div>
-    -->
-    <div class="skill-cat">
-      <div class="skill-cat-title">🛠️ Tools & Others</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">Visual Studio Code</span>
-        <span class="skill-tag">phpMyAdmin</span>
-        <span class="skill-tag">Google Colab</span>
-        <span class="skill-tag">NetBeans</span>
-        <span class="skill-tag">Android Studio</span>
-        <span class="skill-tag">DBeaver</span>
+    <div class="skill-cat" style="--cat-c:#ec4899">
+      <div class="skill-cat-title"><span class="scat-icon">🛠️</span> Tools & Others</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/git.svg" alt="" loading="lazy">Git</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/figma.svg" alt="" loading="lazy">Figma</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/canva.svg" alt="" loading="lazy">Canva</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/vscode.svg" alt="" loading="lazy">Visual Studio Code</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/phpmyadmin.svg" alt="" loading="lazy">phpMyAdmin</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/googlecolab.svg" alt="" loading="lazy">Google Colab</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">NB</span>NetBeans</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/androidstudio.svg" alt="" loading="lazy">Android Studio</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/dbeaver.svg" alt="" loading="lazy">DBeaver</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/git.svg" alt="" loading="lazy">Git</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/figma.svg" alt="" loading="lazy">Figma</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/canva.svg" alt="" loading="lazy">Canva</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/vscode.svg" alt="" loading="lazy">Visual Studio Code</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/phpmyadmin.svg" alt="" loading="lazy">phpMyAdmin</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/googlecolab.svg" alt="" loading="lazy">Google Colab</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NB</span>NetBeans</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/androidstudio.svg" alt="" loading="lazy">Android Studio</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/dbeaver.svg" alt="" loading="lazy">DBeaver</span>
+        </div>
       </div>
     </div>
   </div>
@@ -297,27 +321,37 @@
     <div class="timeline-item">
       <div class="tl-date">Sept 2026 - Present</div>
       <div class="tl-card">
-        <div class="tl-role">IT Development - Staff</div>
-        <div class="tl-company">Masuya Graha Trikencana</div>
-        <div class="tl-desc">Mengembangkan dan memelihara 4 aplikasi bisnis perusahaan yang mencakup platform web, desktop, mobile delivery, dan mobile sales untuk mendukung proses operasional harian. Mengimplementasikan fitur baru dan peningkatan sistem sesuai kebutuhan bisnis, serta melakukan troubleshooting dan debugging untuk menyelesaikan bug dan isu fungsional aplikasi.</div>
+        <div class="tl-header">
+          <img class="tl-logo" src="assets/logo-masuya.png" alt="Masuya Graha Trikencana">
+          <div>
+            <div class="tl-role">IT Development - Staff</div>
+            <div class="tl-company">Masuya Graha Trikencana</div>
+          </div>
+        </div>
+        <div class="tl-desc">Develop and maintain 4 company business applications covering web, desktop, mobile delivery, and mobile sales platforms to support daily operations. Implement new features and system improvements based on business needs, as well as troubleshooting and debugging to resolve bugs and functional issues.</div>
       </div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">Feb 2025 - Aug 2025</div>
       <div class="tl-card">
-        <div class="tl-role">Application Developer - Intern</div>
-        <div class="tl-company">Bank Central Asia (BCA)</div>
-        <div class="tl-desc">Melakukan pengembangan ulang (revamp) aplikasi bisnis internal menggunakan OutSystems Service Studio dengan tujuan meningkatkan efisiensi operasional divisi, menyederhanakan alur kerja, serta mengoptimalkan pengalaman pengguna melalui perbaikan fitur dan antarmuka aplikasi.</div>
+        <div class="tl-header">
+          <img class="tl-logo" src="assets/logo-bca.png" alt="Bank Central Asia (BCA)">
+          <div>
+            <div class="tl-role">Application Developer - Intern</div>
+            <div class="tl-company">Bank Central Asia (BCA)</div>
+          </div>
+        </div>
+        <div class="tl-desc">Revamped an internal business application using OutSystems Service Studio to improve the division's operational efficiency, simplify workflows, and optimize the user experience through feature and interface enhancements.</div>
       </div>
     </div>
-    
+
     <!--    <div class="timeline-item">
-      <div class="tl-date">Sep 2024 - Des 2024</div>
+      <div class="tl-date">Sep 2024 - Dec 2024</div>
       <div class="tl-card">
         <div class="tl-role">Data Analytics For Business — Bootcamp</div>
         <div class="tl-company">Bitlabs Academy</div>
-        <div class="tl-desc">Mengikuti program Data Analytics for Business melalui MSIB Kampus Merdeka Batch 7, mencakup analisis data menggunakan Excel dan Python (Pandas, Matplotlib) serta pembuatan dashboard interaktif menggunakan Tableau.</div>
+        <div class="tl-desc">Joined the Data Analytics for Business program through MSIB Kampus Merdeka Batch 7, covering data analysis using Excel and Python (Pandas, Matplotlib) and building interactive dashboards with Tableau.</div>
       </div>
     </div>
     -->
@@ -325,9 +359,14 @@
     <div class="timeline-item">
       <div class="tl-date">May 2020 - Oct 2021</div>
       <div class="tl-card">
-        <div class="tl-role">Mobile Legends - Esports Athlete</div>
-        <div class="tl-company">Geekfam Indonesia</div>
-        <div class="tl-desc">Berperan sebagai pemain inti dalam kompetisi Mobile Legends Professional League (MPL), bertanggung jawab dalam eksekusi strategi tim, komunikasi selama pertandingan, analisis permainan lawan, dan evaluasi pascapertandingan untuk meningkatkan performa tim.</div>
+        <div class="tl-header">
+          <img class="tl-logo" src="assets/logo-geekfam.png" alt="Geekfam Indonesia">
+          <div>
+            <div class="tl-role">Mobile Legends - Esports Athlete</div>
+            <div class="tl-company">Geekfam Indonesia</div>
+          </div>
+        </div>
+        <div class="tl-desc">Served as a core player in the Mobile Legends Professional League (MPL), responsible for executing team strategy, in-match communication, opponent analysis, and post-match evaluation to improve team performance.</div>
       </div>
     </div>
   </div>
@@ -345,12 +384,12 @@
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project1.jpg</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project1.pdf',techs:['PHP','MySQL','HTML/CSS']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project1.pdf',techs:['PHP','MySQL','HTML/CSS']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
-        <div class="project-title">Website MojoTour</div>
-        <div class="project-desc">MojoTour adalah website wisata desa yang menyediakan informasi destinasi, akomodasi, kuliner, dan transportasi, dilengkapi peta interaktif serta sistem pemesanan online untuk meningkatkan pengalaman wisata pengguna.</div>
+        <div class="project-title">MojoTour Website</div>
+        <div class="project-desc">MojoTour is a village tourism website that provides information on destinations, accommodation, culinary spots, and transportation, complete with an interactive map and an online booking system to enhance the user's travel experience.</div>
         <div class="project-techs">
           <span class="project-tech">PHP</span>
           <span class="project-tech">MySQL</span>
@@ -359,7 +398,7 @@
         <div class="project-card-actions">
           <a class="project-github-btn" href="https://github.com/Firza02/MojoTour" target="_blank">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            Lihat di GitHub
+            View on GitHub
           </a>
         </div>
       </div>
@@ -367,17 +406,17 @@
 
     <div class="project-card">
       <div class="project-thumb">
-        <img loading="lazy" src="assets/project2.png" alt="Dashboard Analitik" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img loading="lazy" src="assets/project2.png" alt="Analytics Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-thumb-placeholder" style="display:none">
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project2.png</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project2.pdf',techs:['Python','Pandas','Tableau','MySQL','Excel']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project2.pdf',techs:['Python','Pandas','Tableau','MySQL','Excel']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
-        <div class="project-title">Sistem Pendukung Keputusan</div>
-        <div class="project-desc">Sistem Pendukung Keputusan berbasis web yang dirancang untuk membantu pengambilan keputusan dengan menggabungkan metode AHP sebagai pembobotan kriteria dan SAW sebagai metode perangkingan alternatif terbaik.</div>
+        <div class="project-title">Decision Support System</div>
+        <div class="project-desc">A web-based Decision Support System designed to assist decision-making by combining the AHP method for criteria weighting and the SAW method for ranking the best alternatives.</div>
         <div class="project-techs">
           <span class="project-tech">PHP</span>
           <span class="project-tech">MySQL</span>
@@ -386,26 +425,26 @@
         <div class="project-card-actions">
           <a class="project-github-btn" href="https://github.com/Firza02/Sistem-Pendukung-Keputusan" target="_blank">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            Lihat di GitHub
+            View on GitHub
           </a>
         </div>
       </div>
     </div>
 
-    <div class="project-card" onclick="openLightbox('assets/project3.png','Aplikasi Internal BCA')">
+    <div class="project-card" onclick="openLightbox('assets/project3.png','BCA Internal Application')">
       <div class="project-thumb">
-        <img loading="lazy" src="assets/project3.png" alt="Aplikasi BCA" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img loading="lazy" src="assets/project3.png" alt="BCA Application" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-thumb-placeholder" style="display:none">
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project3.png</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Analisis Sentimen',pdf:'assets/project3.pdf',techs:['Flask','Python','HTML','CSS']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Sentiment Analysis',pdf:'assets/project3.pdf',techs:['Flask','Python','HTML','CSS']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
         <span class="project-tag">Bachelor's Final Project</span>
-        <div class="project-title">Analisis Sentimen Multi-Aspek</div>
-        <div class="project-desc">Mengembangkan sistem analisis sentimen berbasis IndoBERT, mulai dari pengumpulan dan preprocessing data, pelabelan sentimen, fine-tuning, evaluasi model, hingga implementasi ke dalam website.</div>
+        <div class="project-title">Multi-Aspect Sentiment Analysis</div>
+        <div class="project-desc">Developed an IndoBERT-based sentiment analysis system, covering data collection and preprocessing, sentiment labeling, fine-tuning, model evaluation, and implementation into a website.</div>
         <div class="project-techs">
           <span class="project-tech">Flask</span>
           <span class="project-tech">Python</span>
@@ -416,17 +455,17 @@
 
     <div class="project-card">
       <div class="project-thumb">
-        <img loading="lazy" src="assets/project4.png" alt="Dashboard Analitik" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img loading="lazy" src="assets/project4.png" alt="Analytics Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-thumb-placeholder" style="display:none">
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project4.png</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project4.pdf',techs:['Python','Pandas','Tableau','MySQL','Excel']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'MojoTour',pdf:'assets/project4.pdf',techs:['Python','Pandas','Tableau','MySQL','Excel']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Data Analytics</span>
-        <div class="project-title">Analisis Data Pemesanan Hotel</div>
-        <div class="project-desc">Menganalisis dan mengolah data menggunakan Python, kemudian menyajikan insight melalui dashboard interaktif Tableau yang dilengkapi filter dinamis untuk mendukung pemantauan dan pengambilan keputusan berbasis data.</div>
+        <div class="project-title">Hotel Booking Data Analysis</div>
+        <div class="project-desc">Analyzed and processed data using Python, then presented insights through an interactive Tableau dashboard equipped with dynamic filters to support data-driven monitoring and decision-making.</div>
         <div class="project-techs">
           <span class="project-tech">Python</span>
           <span class="project-tech">Pandas</span>
@@ -439,17 +478,17 @@
 
     <div class="project-card">
       <div class="project-thumb">
-        <img loading="lazy" src="assets/project5.png" alt="Inventori" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img loading="lazy" src="assets/project5.png" alt="Inventory" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-thumb-placeholder" style="display:none">
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project5.png</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Data Warehouse & OLAP',pdf:'assets/project5.pdf',techs:['PHP, JavaScript, MDX, HTML, CSS']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Data Warehouse & OLAP',pdf:'assets/project5.pdf',techs:['PHP, JavaScript, MDX, HTML, CSS']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
         <div class="project-title">Data Warehouse & OLAP</div>
-        <div class="project-desc">Web Data Warehouse berbasis MySQL dan OLAP Mondrian. Sistem ini mengonsolidasikan data penjualan, pembelian, dan HR ke dalam dasbor interaktif untuk analisis multi-dimensi secara dinamis.</div>
+        <div class="project-desc">A web-based Data Warehouse built on MySQL and Mondrian OLAP. This system consolidates sales, purchasing, and HR data into an interactive dashboard for dynamic multi-dimensional analysis.</div>
         <div class="project-techs">
           <span class="project-tech">PHP</span>
           <span class="project-tech">JavaScript</span>
@@ -461,7 +500,7 @@
         <div class="project-card-actions">
           <a class="project-github-btn" href="https://github.com/Firza02/DataWarehouse-OLAP" target="_blank">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            Lihat di GitHub
+            View on GitHub
           </a>
         </div>
       </div>
@@ -474,12 +513,12 @@
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project6.png</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Network',title:'Desain dan Konfigurasi Jaringan',pdf:'assets/project6.pdf',techs:['Cisco Packet Tracer']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Network',title:'Network Design and Configuration',pdf:'assets/project6.pdf',techs:['Cisco Packet Tracer']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Network Management Design</span>
-        <div class="project-title">Desain dan Konfigurasi Jaringan</div>
-        <div class="project-desc">Desain manajemen jaringan SMA MAN Surabaya menggunakan Cisco Packet Tracer, meliputi perancangan topologi, pengalamatan IP, dan konfigurasi jaringan untuk mendukung komunikasi data yang efisien dan stabil.</div>
+        <div class="project-title">Network Design and Configuration</div>
+        <div class="project-desc">Network management design for MAN Surabaya High School using Cisco Packet Tracer, covering topology design, IP addressing, and network configuration to support efficient and stable data communication.</div>
         <div class="project-techs">
           <span class="project-tech">Cisco Packet Tracer</span>
         </div>
@@ -493,12 +532,12 @@
           <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>project7.jpg</span>
         </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'DistribuHub',pdf:'assets/project7.pdf',techs:['Laravel', 'PHP', 'MySQL','Bootstrap','JavaScript']})">📄 Lihat PDF</button></div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'DistribuHub',pdf:'assets/project7.pdf',techs:['Laravel', 'PHP', 'MySQL','Bootstrap','JavaScript']})">📄 View PDF</button></div>
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
-        <div class="project-title">Website DistribuHub</div>
-        <div class="project-desc">DistribuHub adalah sistem manajemen distributor berbasis web yang membantu pengelolaan produk, pelanggan, dan transaksi.</div>
+        <div class="project-title">DistribuHub Website</div>
+        <div class="project-desc">DistribuHub is a web-based distributor management system that helps manage products, customers, and transactions.</div>
         <div class="project-techs">
           <span class="project-tech">Laravel</span>
           <span class="project-tech">PHP</span>
@@ -509,7 +548,7 @@
         <div class="project-card-actions">
           <a class="project-github-btn" href="https://github.com/Firza02/DistribuHub.git" target="_blank">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            Lihat di GitHub
+            View on GitHub
           </a>
         </div>
       </div>
@@ -519,19 +558,22 @@
 <!-- CERTIFICATIONS -->
 <section id="certifications">
   <p class="section-label">Credentials</p>
-  <h2 class="section-title">Certifications & Volunteer</h2>
+  <h2 class="section-title">Credentials & Contributions</h2>
 
   <div class="cert-tabs">
-    <button class="cert-tab active" onclick="switchTab(this,'cert-pane')">🏅 Sertifikasi (5)</button>
-    <button class="cert-tab" onclick="switchTab(this,'vol-pane')">🤝 Volunteer (6)</button>
+    <button class="cert-tab active" onclick="switchTab(this,'cert-pane')">🏅 Certifications & Achievements (5)</button>
+    <button class="cert-tab" onclick="switchTab(this,'vol-pane')">🤝 Volunteers (6)</button>
   </div>
 
   <!-- SERTIFIKASI -->
   <div class="cert-tab-pane active" id="cert-pane">
     <div class="cert-grid">
       <div class="cert-card">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bca.png',name:'OutSystems Service Studio',issuer:'Bank Central Asia',date:'2025',img:'assets/cert1.jpg',type:'cert'})">
+          <img class="cert-thumb" src="assets/cert1.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">⚙️</div>
+          <div class="cert-icon"><img src="assets/logo-bca.png" alt="Bank Central Asia"></div>
           <div>
             <div class="cert-name">Training Teknis Digital Factory Batch 1</div>
             <div class="cert-issuer">Bank Central Asia · OutSystems</div>
@@ -540,16 +582,19 @@
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'⚙️',name:'OutSystems Service Studio',issuer:'Bank Central Asia',date:'2025',img:'assets/cert1.jpg',type:'cert'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bca.png',name:'OutSystems Service Studio',issuer:'Bank Central Asia',date:'2025',img:'assets/cert1.jpg',type:'cert'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bitlabs.png',name:'Data Analytics For Business',issuer:'Bitlabs Academy',date:'2024',img:'assets/cert2.jpg',type:'cert'})">
+          <img class="cert-thumb" src="assets/cert2.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">📊</div>
+          <div class="cert-icon"><img src="assets/logo-bitlabs.png" alt="Bitlabs Academy"></div>
           <div>
             <div class="cert-name">Data Analytics For Business</div>
             <div class="cert-issuer">Bitlabs Academy · Excel, Python, Tableau</div>
@@ -558,16 +603,19 @@
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'📊',name:'Data Analytics For Business',issuer:'Bitlabs Academy',date:'2024',img:'assets/cert2.jpg',type:'cert'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bitlabs.png',name:'Data Analytics For Business',issuer:'Bitlabs Academy',date:'2024',img:'assets/cert2.jpg',type:'cert'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bapomi.jpeg',name:'Pekan Olahraga Mahasiswa Provinsi Jawa Timur II',issuer:'BAPOMI Jatim',date:'2023',img:'assets/cert3.jpg',type:'cert'})">
+          <img class="cert-thumb" src="assets/cert3.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🥇</div>
+          <div class="cert-icon"><img src="assets/logo-bapomi.jpeg" alt="BAPOMI Jatim"></div>
           <div>
             <div class="cert-name">Pekan Olahraga Mahasiswa Provinsi Jawa Timur II</div>
             <div class="cert-issuer">BAPOMI Jatim · Mobile Legends</div>
@@ -576,16 +624,19 @@
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🥇',name:'Pekan Olahraga Mahasiswa Provinsi Jawa Timur II',issuer:'BAPOMI Jatim',date:'2023',img:'assets/cert3.jpg',type:'cert'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bapomi.jpeg',name:'Pekan Olahraga Mahasiswa Provinsi Jawa Timur II',issuer:'BAPOMI Jatim',date:'2023',img:'assets/cert3.jpg',type:'cert'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-unesa.png',name:'Lomba Karya Teknologi',issuer:'UNESA',date:'2018',img:'assets/cert4.jpeg',type:'cert'})">
+          <img class="cert-thumb" src="assets/cert4.jpeg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🤖</div>
+          <div class="cert-icon"><img src="assets/logo-unesa.png" alt="UNESA"></div>
           <div>
             <div class="cert-name">Lomba Karya Teknologi</div>
             <div class="cert-issuer">UNESA · Robot Professional</div>
@@ -594,28 +645,28 @@
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🤖',name:'Lomba Karya Teknologi',issuer:'UNESA',date:'2018',img:'assets/cert4.jpeg',type:'cert'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-unesa.png',name:'Lomba Karya Teknologi',issuer:'UNESA',date:'2018',img:'assets/cert4.jpeg',type:'cert'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card">
         <div class="cert-card-top">
-          <div class="cert-icon">📊</div>
+          <div class="cert-icon"><img src="assets/logo-bnsp.png" alt="Badan Nasional Sertifikasi Profesi"></div>
           <div>
             <div class="cert-name">Junior Web Programmer</div>
             <div class="cert-issuer">Badan Nasional Sertifikasi Profesi · Laravel</div>
             <div class="cert-date">2025</div>
-            <span class="cert-badge verified">✓ Verified</span>
+            <span class="cert-badge pending">⏳ Pending</span>
           </div>
         </div>
         <!--
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'📊',name:'Data Analytics For Business',issuer:'Bitlabs Academy',date:'2024',img:'assets/cert2.jpg',type:'cert'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bitlabs.png',name:'Data Analytics For Business',issuer:'Bitlabs Academy',date:'2024',img:'assets/cert2.jpg',type:'cert'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
         -->
@@ -627,109 +678,127 @@
   <div class="cert-tab-pane" id="vol-pane">
     <div class="cert-grid">
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'MOSAIK 2024 x LKMM Pra-TD',issuer:'BEM Fakultas Ilmu Komputer',date:'2024',img:'assets/vol1.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol1.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🎓</div>
+          <div class="cert-icon"><img src="assets/logo-bemfik.jpg" alt="BEM Fakultas Ilmu Komputer"></div>
           <div>
             <div class="cert-name">MOSAIK 2024 x LKMM Pra-TD</div>
             <div class="cert-issuer">BEM Fakultas Ilmu Komputer</div>
-            <div class="cert-date">Sebagai Kepala Sektor F</div>
+            <div class="cert-date">Sector F Coordinator</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🎓',name:'MOSAIK 2024 x LKMM Pra-TD',issuer:'BEM Fakultas Ilmu Komputer',date:'2024',img:'assets/vol1.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'MOSAIK 2024 x LKMM Pra-TD',issuer:'BEM Fakultas Ilmu Komputer',date:'2024',img:'assets/vol1.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'Fasilkom Fest 2023/2024',issuer:'BEM Fakultas Ilmu Komputer',date:'2023/2024',img:'assets/vol2.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol2.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">💡</div>
+          <div class="cert-icon"><img src="assets/logo-bemfik.jpg" alt="BEM Fakultas Ilmu Komputer"></div>
           <div>
             <div class="cert-name">Fasilkom Fest 2023/2024</div>
             <div class="cert-issuer">BEM Fakultas Ilmu Komputer</div>
-            <div class="cert-date">Sebagai PJ Perlombaan Mobile Legend</div>
+            <div class="cert-date">Mobile Legends Competition Coordinator</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'💡',name:'Fasilkom Fest 2023/2024',issuer:'BEM Fakultas Ilmu Komputer',date:'2023/2024',img:'assets/vol2.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'Fasilkom Fest 2023/2024',issuer:'BEM Fakultas Ilmu Komputer',date:'2023/2024',img:'assets/vol2.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'Studi Mengenal Sistem Informasi (DIMENSI 2024)',issuer:'HIMA Sistem Informasi',date:'2024',img:'assets/vol3.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol3.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🌱</div>
+          <div class="cert-icon"><img src="assets/logo-himasifo.png" alt="HIMA Sistem Informasi"></div>
           <div>
             <div class="cert-name">Studi Mengenal Sistem Informasi (DIMENSI 2024)</div>
             <div class="cert-issuer">HIMA Sistem Informasi</div>
-            <div class="cert-date">Divisi Senior Pendamping</div>
+            <div class="cert-date">Senior Mentor Division</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🌱',name:'Studi Mengenal Sistem Informasi (DIMENSI 2024)',issuer:'HIMA Sistem Informasi',date:'2024',img:'assets/vol3.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'Studi Mengenal Sistem Informasi (DIMENSI 2024)',issuer:'HIMA Sistem Informasi',date:'2024',img:'assets/vol3.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'Information System Competition (ISC)',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol4.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol4.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🏆</div>
+          <div class="cert-icon"><img src="assets/logo-himasifo.png" alt="HIMA Sistem Informasi"></div>
           <div>
             <div class="cert-name">Information System Competition (ISC)</div>
             <div class="cert-issuer">HIMA Sistem Informasi</div>
-            <div class="cert-date">Divisi Acara</div>
+            <div class="cert-date">Event Division</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🏆',name:'Information System Competition (ISC)',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol4.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'Information System Competition (ISC)',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol4.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'MOSAIK 2023',issuer:'BEM Fakultas Ilmu Komputer',date:'2023',img:'assets/vol5.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol5.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">🤝</div>
+          <div class="cert-icon"><img src="assets/logo-bemfik.jpg" alt="BEM Fakultas Ilmu Komputer"></div>
           <div>
             <div class="cert-name">MOSAIK 2023</div>
             <div class="cert-issuer">BEM Fakultas Ilmu Komputer</div>
-            <div class="cert-date">Divisi Senior Pendamping</div>
+            <div class="cert-date">Senior Mentor Division</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'🤝',name:'MOSAIK 2023',issuer:'BEM Fakultas Ilmu Komputer',date:'2023',img:'assets/vol5.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-bemfik.jpg',name:'MOSAIK 2023',issuer:'BEM Fakultas Ilmu Komputer',date:'2023',img:'assets/vol5.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
 
       <div class="cert-card volunteer">
+        <div class="cert-thumb-wrap" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'DIES Natalis Sistem Informasi',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol6.jpg',type:'vol'})">
+          <img class="cert-thumb" src="assets/vol6.jpg" alt="" loading="lazy">
+        </div>
         <div class="cert-card-top">
-          <div class="cert-icon">📡</div>
+          <div class="cert-icon"><img src="assets/logo-himasifo.png" alt="HIMA Sistem Informasi"></div>
           <div>
             <div class="cert-name">DIES Natalis Sistem Informasi</div>
             <div class="cert-issuer">HIMA Sistem Informasi</div>
-            <div class="cert-date">Divisi Konsumsi</div>
+            <div class="cert-date">Logistics Division</div>
             <span class="cert-badge vol">Volunteer</span>
           </div>
         </div>
         <div class="cert-card-actions">
-          <button class="cert-view-btn" onclick="openCertModal({icon:'📡',name:'DIES Natalis Sistem Informasi',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol6.jpg',type:'vol'})">
+          <button class="cert-view-btn" onclick="openCertModal({icon:'assets/logo-himasifo.png',name:'DIES Natalis Sistem Informasi',issuer:'HIMA Sistem Informasi',date:'2023',img:'assets/vol6.jpg',type:'vol'})">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Lihat Sertifikat
+            View Certificate
           </button>
         </div>
       </div>
@@ -754,11 +823,11 @@
       <!-- filled by JS -->
     </div>
     <div class="cert-modal-footer">
-      <span class="cert-modal-hint">📎 Klik gambar untuk zoom penuh</span>
+      <span class="cert-modal-hint">📎 Click image to zoom in</span>
       <div class="cert-modal-btns">
         <a class="cert-modal-btn secondary" id="cmOpenBtn" href="#" target="_blank">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          <span class="btn-text">Buka di Tab Baru</span>
+          <span class="btn-text">Open in New Tab</span>
         </a>
         <a class="cert-modal-btn primary" id="cmDownBtn" href="#" download>
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -780,7 +849,7 @@
       <div class="proj-modal-header-right">
         <a class="proj-modal-action secondary" id="pmOpenBtn" href="#" target="_blank">
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          <span class="btn-text">Buka Tab Baru</span>
+          <span class="btn-text">Open New Tab</span>
         </a>
         <a class="proj-modal-action primary" id="pmDownBtn" href="#" download>
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -793,15 +862,15 @@
     <div class="proj-modal-body" id="pmBody">
       <div class="proj-modal-nopdf" id="pmNoPdf">
         <div class="proj-modal-nopdf-icon">📄</div>
-        <h3>File PDF belum tersedia</h3>
-        <p>Letakkan file PDF project di folder <code>assets/</code><br>dengan nama yang sesuai, lalu refresh halaman.</p>
+        <h3>PDF file not available yet</h3>
+        <p>Place the project's PDF file in the <code>assets/</code> folder<br>with the matching name, then refresh the page.</p>
       </div>
     </div>
     <!-- Footer -->
     <div class="proj-modal-footer">
       <span class="proj-modal-hint">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Gunakan scroll untuk navigasi halaman PDF
+        Scroll to navigate the PDF pages
       </span>
       <div class="proj-modal-techs" id="pmTechs"></div>
     </div>

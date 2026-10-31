@@ -134,7 +134,7 @@
     }, 2000);
 
     function showNoPdf() {
-      body.innerHTML = '<div class="proj-modal-nopdf"><div class="proj-modal-nopdf-icon">📄</div><h3>File PDF belum tersedia</h3><p>Letakkan file PDF di folder <code>assets/</code> dengan nama <code>' + data.pdf.split('/').pop() + '</code></p></div>';
+      body.innerHTML = '<div class="proj-modal-nopdf"><div class="proj-modal-nopdf-icon">📄</div><h3>PDF file not available yet</h3><p>Place the PDF file in the <code>assets/</code> folder with the name <code>' + data.pdf.split('/').pop() + '</code></p></div>';
     }
 
     backdrop.classList.add('open');
@@ -160,20 +160,21 @@
   // Cert Modal
   function openCertModal(data) {
     const modal = document.getElementById('certModal');
-    document.getElementById('cmIcon').textContent = data.icon;
-    document.getElementById('cmIcon').className = 'cert-modal-icon' + (data.type === 'vol' ? ' vol-icon' : '');
+    const cmIcon = document.getElementById('cmIcon');
+    cmIcon.innerHTML = '<img src="' + data.icon + '" alt="">';
+    cmIcon.className = 'cert-modal-icon' + (data.type === 'vol' ? ' vol-icon' : '');
     document.getElementById('cmName').textContent = data.name;
     document.getElementById('cmMeta').textContent = data.issuer + ' · ' + data.date;
 
     const preview = document.getElementById('cmPreview');
-    preview.innerHTML = '<div class="cert-modal-noimg"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Memuat...</p></div>';
+    preview.innerHTML = '<div class="cert-modal-noimg"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Loading...</p></div>';
 
     const img = new Image();
     img.onload = () => {
       preview.innerHTML = '<img src="' + data.img + '" alt="' + data.name + '" onclick="window.open(\'' + data.img + '\',\'_blank\')" style="cursor:zoom-in;max-width:100%;max-height:55vh;border-radius:10px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 12px 40px rgba(0,0,0,0.5)">';
     };
     img.onerror = () => {
-      preview.innerHTML = '<div class="cert-modal-noimg"><svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>File <strong>' + data.img + '</strong> belum tersedia.<br>Letakkan file sertifikat di folder <code>assets/</code> dengan nama yang sesuai.</p></div>';
+      preview.innerHTML = '<div class="cert-modal-noimg"><svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>File <strong>' + data.img + '</strong> is not available yet.<br>Place the certificate file in the <code>assets/</code> folder with the matching name.</p></div>';
     };
     img.src = data.img;
 
