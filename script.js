@@ -57,27 +57,32 @@
 })();
 
 // Smooth active nav link
-  const sections = document.querySelectorAll('section, .hero, .stats-strip, .tech-bar');
   const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = Array.from(navLinks)
+    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean);
 
-  const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      console.log("Terlihat:", e.target.id);
+  function setActiveLink(id) {
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
 
-      const id = e.target.id;
-
-      navLinks.forEach(a => {
-        a.classList.toggle(
-          'active',
-          a.getAttribute('href') === '#' + id
-        );
-      });
+  function updateActiveLink() {
+    const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+    const scrollPos = window.scrollY + navHeight + 1;
+    let currentId = sections[0].id;
+    for (const sec of sections) {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
     }
-  });
-}, { threshold: 0.1 });
+    setActiveLink(currentId);
+  }
 
-  sections.forEach(el => observer.observe(el));
+  if (sections.length) {
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    window.addEventListener('resize', updateActiveLink);
+    updateActiveLink();
+
+    navLinks.forEach(a => a.addEventListener('click', () => setActiveLink(a.getAttribute('href').slice(1))));
+  }
 
   // Scroll reveal
   const revealObserver = new IntersectionObserver(entries => {
@@ -195,18 +200,19 @@
     }
   });
 
-  // Particle generator around photo
-  const particleContainer = document.getElementById('particles');
+  // Particle generator around photo (hero + any other .photo-particles container, e.g. About)
+  const particleContainers = document.querySelectorAll('.photo-particles');
   const colors = ['#06b6d4','#3b82f6','#7c3aed','#a855f7','#60a5fa'];
-  function spawnParticle() {
+  function spawnParticle(container) {
+    const w = container.clientWidth, h = container.clientHeight;
     const p = document.createElement('div');
     p.className = 'particle';
     const side = Math.random();
     let x, y;
-    if (side < 0.25)      { x = Math.random() * 380; y = 380 + 20; } // bottom
-    else if (side < 0.5)  { x = -20; y = Math.random() * 440; }       // left
-    else if (side < 0.75) { x = 380 + 20; y = Math.random() * 440; }  // right
-    else                  { x = Math.random() * 380; y = -20; }        // top
+    if (side < 0.25)      { x = Math.random() * w; y = h + 20; }  // bottom
+    else if (side < 0.5)  { x = -20; y = Math.random() * h; }      // left
+    else if (side < 0.75) { x = w + 20; y = Math.random() * h; }   // right
+    else                  { x = Math.random() * w; y = -20; }       // top
     p.style.left = x + 'px';
     p.style.top  = y + 'px';
     p.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -217,12 +223,12 @@
     const size = 2 + Math.random() * 3;
     p.style.width = size + 'px';
     p.style.height = size + 'px';
-    particleContainer.appendChild(p);
+    container.appendChild(p);
     setTimeout(() => p.remove(), (dur + 1) * 1000);
   }
-  if (particleContainer) {
-    setInterval(spawnParticle, 350);
-  }
+  particleContainers.forEach(container => {
+    setInterval(() => spawnParticle(container), 350);
+  });
 
   function bukaModalPDF(urlPDF) {
     // Masukkan url PDF ke dalam iframe
