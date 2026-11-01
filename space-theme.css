@@ -121,6 +121,53 @@
 }
 
 /* ---------------------------------------------------------------------
+   4b) LOADING SCREEN — overlay percentage, dikendalikan oleh
+       space-loader.js (#spaceLoading / #spaceLoadingPercent).
+       Durasi maksimum 2s, selalu ditutup oleh event window 'load'
+       (lihat space-loader.js) — murni kosmetik, tidak memblokir konten.
+   --------------------------------------------------------------------- */
+.space-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: radial-gradient(ellipse 80% 70% at 50% 40%, #0b1733 0%, #060d1f 70%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.space-loading.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.space-loading-constellation {
+  display: block;
+  width: 260px;
+  max-width: 72vw;
+  height: auto;
+}
+
+.space-loading-percent {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  color: var(--accent-warm-text);
+  font-variant-numeric: tabular-nums;
+}
+.space-loading-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+
+/* ---------------------------------------------------------------------
    4) STARFIELD CANVAS (digambar oleh space-loader.js di #spaceCanvas)
    --------------------------------------------------------------------- */
 .space-canvas {
