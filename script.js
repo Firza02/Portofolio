@@ -39,12 +39,15 @@
   const progress = document.getElementById('scrollProgress');
   const backToTop = document.getElementById('backToTop');
 
+  const hasBottomNav = window.matchMedia('(max-width: 900px)');
+
   function onScroll() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     if (progress) progress.style.width = pct + '%';
-    if (backToTop) backToTop.classList.toggle('visible', scrollTop > 500);
+    // On mobile, visibility is driven by the bottom tab bar's compact state instead (see below).
+    if (backToTop && !hasBottomNav.matches) backToTop.classList.toggle('visible', scrollTop > 500);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -56,8 +59,26 @@
   }
 })();
 
+// Nav offset: single source of truth for how much space the floating pill
+// nav reserves at the top, used both for where sections land on click
+// (--nav-offset, read by scroll-margin-top) and for deciding which tab is
+// "active" while scrolling. Keeping both in sync here avoids them landing
+// a few pixels apart and misdetecting the active section.
+  const navEl = document.querySelector('nav');
+  const NAV_GAP = 0;
+  let navOffset = NAV_GAP;
+
+  function updateNavOffset() {
+    const navHeight = navEl ? navEl.offsetHeight : 0;
+    navOffset = navHeight + NAV_GAP;
+    document.documentElement.style.setProperty('--nav-offset', navOffset + 'px');
+  }
+
+  updateNavOffset();
+  window.addEventListener('resize', updateNavOffset);
+
 // Smooth active nav link
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navLinks = document.querySelectorAll('.nav-links a, .bottom-nav-link');
   const sections = Array.from(navLinks)
     .map(a => document.getElementById(a.getAttribute('href').slice(1)))
     .filter(Boolean);
@@ -67,8 +88,7 @@
   }
 
   function updateActiveLink() {
-    const navHeight = document.querySelector('nav')?.offsetHeight || 0;
-    const scrollPos = window.scrollY + navHeight + 1;
+    const scrollPos = window.scrollY + navOffset + 1;
     let currentId = sections[0].id;
     for (const sec of sections) {
       if (sec.offsetTop <= scrollPos) currentId = sec.id;
@@ -83,6 +103,29 @@
 
     navLinks.forEach(a => a.addEventListener('click', () => setActiveLink(a.getAttribute('href').slice(1))));
   }
+
+// Bottom tab bar: shrink while scrolling down, restore on scroll up.
+// On mobile, the back-to-top button only appears while the bar is compact.
+(function () {
+  const bottomNav = document.getElementById('bottomNav');
+  const backToTop = document.getElementById('backToTop');
+  if (!bottomNav) return;
+
+  const isMobile = window.matchMedia('(max-width: 900px)');
+  let lastY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const scrollingDown = y > lastY;
+    const pastThreshold = y > 80;
+    const compact = scrollingDown && pastThreshold;
+
+    bottomNav.classList.toggle('compact', compact);
+    if (backToTop && isMobile.matches) backToTop.classList.toggle('visible', compact);
+
+    lastY = y;
+  }, { passive: true });
+})();
 
   // Scroll reveal
   const revealObserver = new IntersectionObserver(entries => {
@@ -244,3 +287,26 @@ function tutupModalPDF() {
     // Kosongkan src iframe agar PDF berhenti dimuat di latar belakang
     document.getElementById('pdfViewer').src = '';
 }
+
+// ── Project cards: subtle 3D tilt following the cursor ──
+(function () {
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!canHover || reduceMotion) return;
+
+  const MAX_TILT = 6; // degrees
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const rotateY = x * MAX_TILT * 2;
+      const rotateX = -y * MAX_TILT * 2;
+      card.style.transform = `translateY(-8px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
