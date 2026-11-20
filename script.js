@@ -38,6 +38,7 @@
 (function () {
   const progress = document.getElementById('scrollProgress');
   const backToTop = document.getElementById('backToTop');
+  const nav = document.querySelector('nav');
 
   const hasBottomNav = window.matchMedia('(max-width: 900px)');
 
@@ -48,6 +49,9 @@
     if (progress) progress.style.width = pct + '%';
     // On mobile, visibility is driven by the bottom tab bar's compact state instead (see below).
     if (backToTop && !hasBottomNav.matches) backToTop.classList.toggle('visible', scrollTop > 500);
+    // Nav starts flush against the top; past a small scroll threshold it switches
+    // to the floating pill look it had before.
+    if (nav) nav.classList.toggle('scrolled', scrollTop > 10);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
