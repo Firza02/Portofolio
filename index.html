@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muhammad Firza Pahlevi — Portfolio</title>
-<meta name="description" content="Portfolio of Muhammad Firza Pahlevi — Fullstack Developer, Application Developer, and Data Analyst.">
+<meta name="description" content="Portfolio of Muhammad Firza Pahlevi — Software Developer & Fullstack Developer, with a background in Data Analytics.">
 <meta name="theme-color" content="#060d1f">
 <link rel="stylesheet" href="style.css">
 <!-- ===== SPACE THEME: stylesheet (remove this line to revert the look) ===== -->
@@ -17,9 +17,11 @@
 <body>
 <!-- ===== SPACE THEME: loading screen START (remove this block to revert the look) ===== -->
 <div class="space-loading" id="spaceLoading" role="status" aria-live="polite" aria-label="Loading page">
-  <canvas class="space-loading-constellation" id="spaceLoadingConstellation" width="260" height="170"></canvas>
-  <div class="space-loading-percent" id="spaceLoadingPercent">0%</div>
-  <div class="space-loading-label" id="spaceLoadingLabel">Charting the stars…</div>
+  <canvas class="space-loading-warp" id="spaceLoadingConstellation"></canvas>
+  <div class="space-loading-info">
+    <div class="space-loading-percent" id="spaceLoadingPercent">0%</div>
+    <div class="space-loading-label" id="spaceLoadingLabel">Warming up the warp drive…</div>
+  </div>
 </div>
 <!-- ===== SPACE THEME: loading screen END ===== -->
 <!-- ===== SPACE THEME: markup START (remove this block to revert the look) ===== -->
@@ -31,13 +33,32 @@
 </button>
 <!-- NAV -->
 <nav>
+  <a href="#intro" class="nav-logo">Frz</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#intro" class="active">Intro</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#intro" class="active">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10"/></svg>
+      <span>Intro</span>
+    </a></li>
+    <li><a href="#about">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      <span>About</span>
+    </a></li>
+    <li><a href="#skills">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <span>Skills</span>
+    </a></li>
+    <li><a href="#experience">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span>Experience</span>
+    </a></li>
+    <li><a href="#projects">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+      <span>Projects</span>
+    </a></li>
+    <li><a href="#certifications">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
+      <span>Certifications</span>
+    </a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" title="Menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
     <span class="nav-toggle-bar"></span>
@@ -81,8 +102,11 @@
   <div class="hero-left">
     <div class="badge-open fade-up"><span class="badge-dot"></span>Open to Opportunities</div>
     <p class="greeting fade-up">Hello, I'm</p>
-    <h1 class="hero-name fade-up">Muhammad<br><span class="highlight">Firza</span> Pahlevi</h1>
-    <p class="hero-roles fade-up">Data Analyst | Data Scientist | Software Developer  </p>
+    <h1 class="hero-name" id="heroName">
+      <canvas class="hero-name-canvas" id="heroNameCanvas" aria-hidden="true"></canvas>
+      <span class="hero-name-text" id="heroNameText">Muhammad<br><span class="highlight">Firza</span> Pahlevi</span>
+    </h1>
+    <p class="hero-roles fade-up">Software Developer | Fullstack Developer | Data Analyst</p>
     <!-- <p class="hero-desc fade-up">Information Systems graduate with a strong interest in data analytics. Experienced in data analysis and visualization through the Data Analytics for Business program at Bitlabs Academy, as well as application development during an internship at Bank Central Asia (BCA). Passionate about transforming data into meaningful insights to support better business decisions.</p>
     -->
     <div class="hero-cta fade-up">
@@ -139,24 +163,24 @@
 
       <!-- Floating cards -->
       <div class="float-card fc-dev">
-        <div class="fc-icon">📊</div>
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Interest</div>
-          <div>Data Analyst</div>
-        </div>
-      </div>
-      <div class="float-card fc-data">
         <div class="fc-icon">⟨/⟩</div>
         <div>
           <div style="font-size:.75rem;color:var(--muted)">Interest</div>
           <div>Software Developer</div>
         </div>
       </div>
-      <div class="float-card fc-ml">
-        <div class="fc-icon">🧠</div>
+      <div class="float-card fc-data">
+        <div class="fc-icon">🌐</div>
         <div>
           <div style="font-size:.75rem;color:var(--muted)">Interest</div>
-          <div>Data Scientist</div>
+          <div>Fullstack Developer</div>
+        </div>
+      </div>
+      <div class="float-card fc-ml">
+        <div class="fc-icon">📊</div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted)">Interest</div>
+          <div>Data Analyst</div>
         </div>
       </div>
     </div>
@@ -203,8 +227,8 @@
   <h2 class="section-title">About Me</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>An Information Systems graduate with a strong interest in Data Analytics and Data Science. Through the Data Analytics for Business program at Bitlabs Academy, I gained hands-on experience in data analysis, data cleaning, and visualization. I also bring professional experience as an Application Developer Intern at Bank Central Asia (BCA), where I developed an understanding of application development and business processes.</p>
-      <p>I believe that data is more than just numbers; it tells meaningful stories and reveals valuable insights. I am passionate about exploring data, identifying patterns, and transforming findings into actionable insights that support informed business decisions.</p>
+      <p>An Information Systems graduate with a strong focus on software and application development. I bring professional experience as an Application Developer Intern at Bank Central Asia (BCA), where I built and maintained business applications using OutSystems and gained hands-on exposure to real-world development workflows and business processes.</p>
+      <p>I believe that great technology should not only work well, but also solve real problems in a simple, effective, and meaningful way.</p>
     </div>
     <div class="about-highlights">
       <div class="highlight-row"><span class="hi hi-logo"><img src="assets/logo-upn.png" alt="UPN Veteran Jawa Timur"></span><div><strong>Bachelor of Information Systems</strong><br><span>UPN Veteran Jawa Timur · 2022 - 2026</span><br><span>GPA 3.85/4.00 (Cum Laude)</span></div></div>
@@ -251,52 +275,6 @@
         </div>
       </div>
     </div>
-    <div class="skill-cat" style="--cat-c:#06b6d4">
-      <div class="skill-cat-title"><span class="scat-icon">📊</span> Data Analytics</div>
-      <div class="skill-marquee">
-        <div class="skill-track">
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
-          <!-- duplicated for seamless loop -->
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
-        </div>
-      </div>
-    </div>
-    <div class="skill-cat" style="--cat-c:#7c3aed">
-      <div class="skill-cat-title"><span class="scat-icon">🧠</span> AI / NLP</div>
-      <div class="skill-marquee">
-        <div class="skill-track">
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
-          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
-          <!-- duplicated for seamless loop -->
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
-          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
-        </div>
-      </div>
-    </div>
     <div class="skill-cat" style="--cat-c:#f59e0b">
       <div class="skill-cat-title"><span class="scat-icon">🗃️</span> Database</div>
       <div class="skill-marquee">
@@ -340,6 +318,52 @@
           <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NB</span>NetBeans</span>
           <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/androidstudio.svg" alt="" loading="lazy">Android Studio</span>
           <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/dbeaver.svg" alt="" loading="lazy">DBeaver</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat" style="--cat-c:#06b6d4">
+      <div class="skill-cat-title"><span class="scat-icon">📊</span> Data Analytics</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pandas.svg" alt="" loading="lazy">Pandas</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/numpy.svg" alt="" loading="lazy">NumPy</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/tableau.svg" alt="" loading="lazy">Tableau</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/excel.svg" alt="" loading="lazy">Excel</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ED</span>EDA</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">ET</span>ETL</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">DV</span>Data Visualization</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SQ</span>SQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat" style="--cat-c:#7c3aed">
+      <div class="skill-cat-title"><span class="scat-icon">🧠</span> AI / NLP</div>
+      <div class="skill-marquee">
+        <div class="skill-track">
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
+          <span class="skill-tag"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
+          <!-- duplicated for seamless loop -->
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">IB</span>IndoBERT</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/huggingface.svg" alt="" loading="lazy">Transformers</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="skill-tag" aria-hidden="true"><img class="tag-ic" src="assets/icons/pytorch.svg" alt="" loading="lazy">PyTorch</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">NL</span>NLP</span>
+          <span class="skill-tag" aria-hidden="true"><span class="tag-ic tag-ic--dot">SA</span>Sentiment Analysis</span>
         </div>
       </div>
     </div>
@@ -410,31 +434,8 @@
   <p class="section-label">Portfolio</p>
   <h2 class="section-title">Projects</h2>
   <div class="projects-grid">
-    <div class="project-card featured" style="--cat-c:#06b6d4" onclick="openLightbox('assets/project3.png','BCA Internal Application')">
-      <span class="project-featured-badge">🎓 Bachelor's Final Project</span>
-      <div class="project-thumb">
-        <img loading="lazy" src="assets/project3.png" alt="BCA Application" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="project-thumb-placeholder" style="display:none">
-          <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          <span>project3.png</span>
-        </div>
-        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Sentiment Analysis',pdf:'assets/project3.pdf',techs:['Flask','Python','HTML','CSS']})">📄 View PDF</button></div>
-      </div>
-      <div class="project-info">
-        <span class="project-tag">Data Science</span>
-        <span class="project-tag">Web App</span>
-        <div class="project-title">Multi-Aspect Sentiment Analysis</div>
-        <div class="project-desc">Developed an IndoBERT-based sentiment analysis system, covering data collection and preprocessing, sentiment labeling, fine-tuning, model evaluation, and implementation into a website.</div>
-        <div class="project-techs">
-          <span class="project-tech"><img class="tag-ic" src="assets/icons/flask.svg" alt="" loading="lazy">Flask</span>
-          <span class="project-tech"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
-          <span class="project-tech"><img class="tag-ic" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
-          <span class="project-tech"><img class="tag-ic" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" style="--cat-c:#3b82f6">
+    <div class="project-card featured" style="--cat-c:#3b82f6">
+      <span class="project-featured-badge">⭐ Featured Project</span>
       <div class="project-thumb">
         <img loading="lazy" src="assets/project7.png" alt="DistribuHub" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-thumb-placeholder" style="display:none">
@@ -445,8 +446,9 @@
       </div>
       <div class="project-info">
         <span class="project-tag">Web App</span>
+        <span class="project-tag">Fullstack</span>
         <div class="project-title">DistribuHub Website</div>
-        <div class="project-desc">DistribuHub is a web-based distributor management system that helps manage products, customers, and transactions.</div>
+        <div class="project-desc">A full-stack distributor management system built with Laravel — covering product, customer, and transaction management with a relational MySQL database.</div>
         <div class="project-techs">
           <span class="project-tech"><img class="tag-ic" src="assets/icons/laravel.svg" alt="" loading="lazy">Laravel</span>
           <span class="project-tech"><img class="tag-ic" src="assets/icons/php.svg" alt="" loading="lazy">PHP</span>
@@ -459,6 +461,29 @@
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
             View on GitHub
           </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" style="--cat-c:#06b6d4" onclick="openLightbox('assets/project3.png','BCA Internal Application')">
+      <div class="project-thumb">
+        <img loading="lazy" src="assets/project3.png" alt="BCA Application" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-thumb-placeholder" style="display:none">
+          <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>project3.png</span>
+        </div>
+        <div class="project-overlay"><button class="project-overlay-btn" onclick="openProjModal({tag:'Web App',title:'Sentiment Analysis',pdf:'assets/project3.pdf',techs:['Flask','Python','HTML','CSS']})">📄 View PDF</button></div>
+      </div>
+      <div class="project-info">
+        <span class="project-tag">🎓 Final Project</span>
+        <span class="project-tag">Data Science</span>
+        <div class="project-title">Multi-Aspect Sentiment Analysis</div>
+        <div class="project-desc">Developed an IndoBERT-based sentiment analysis system, covering data collection and preprocessing, sentiment labeling, fine-tuning, model evaluation, and implementation into a website.</div>
+        <div class="project-techs">
+          <span class="project-tech"><img class="tag-ic" src="assets/icons/flask.svg" alt="" loading="lazy">Flask</span>
+          <span class="project-tech"><img class="tag-ic" src="assets/icons/python.svg" alt="" loading="lazy">Python</span>
+          <span class="project-tech"><img class="tag-ic" src="assets/icons/html5.svg" alt="" loading="lazy">HTML5</span>
+          <span class="project-tech"><img class="tag-ic" src="assets/icons/css3.svg" alt="" loading="lazy">CSS3</span>
         </div>
       </div>
     </div>
