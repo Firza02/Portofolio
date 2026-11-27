@@ -194,7 +194,26 @@
     line-height: 1.05;
     color: #fff;
   }
-  .hero-name .highlight { color: var(--blue); }
+  .hero-name .highlight {
+    position: relative;
+    background: linear-gradient(100deg, var(--blue) 10%, var(--cyan) 45%, var(--violet) 75%, var(--blue) 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hero-name-sheen 7s linear infinite;
+  }
+  @keyframes hero-name-sheen {
+    to { background-position: -250% center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-name .highlight {
+      animation: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      color: var(--blue);
+    }
+  }
 
   /* Nama hero dibentuk dari titik-titik partikel yang "terbang masuk"
      (lihat runHeroNameReveal di space-loader.js), dipicu bersamaan dengan
@@ -223,6 +242,23 @@
     font-size: 1.1rem; font-weight: 700;
     color: var(--accent);
     letter-spacing: .01em;
+  }
+  .hero-roles-visible { display: inline-flex; align-items: center; overflow: hidden; }
+  .hero-roles-word {
+    display: inline-block;
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .hero-roles-word.is-out-up    { opacity: 0; transform: translateY(-100%); }
+  .hero-roles-word.is-in-bottom { opacity: 0; transform: translateY(100%); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-roles-word { transition: none; }
+    .hero-roles-word.is-out-up, .hero-roles-word.is-in-bottom { opacity: 1; transform: none; }
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
 
   .hero-desc {
@@ -288,11 +324,41 @@
     overflow: visible;
   }
 
+  /* Ambient glow pulsing behind the whole photo card — separate from the
+     spinning border ring below, gives the right column a sense of depth
+     instead of sitting flat against the page background. */
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0; margin: auto;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle,
+      rgba(59,130,246,0.35) 0%,
+      rgba(124,58,237,0.25) 40%,
+      rgba(6,182,212,0.15) 65%,
+      transparent 80%
+    );
+    filter: blur(50px);
+    animation: hero-glow-pulse 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes hero-glow-pulse {
+    0%, 100% { opacity: .55; transform: scale(1); }
+    50%      { opacity: .9;  transform: scale(1.14); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-right::before { animation: none; opacity: .7; }
+  }
+
   .photo-wrap {
     position: relative;
     width: 340px; height: 440px;
     /* overflow visible agar float cards bisa keluar dari batas wrap */
     overflow: visible;
+    transform-style: preserve-3d;
+    transition: transform .25s ease-out;
+    will-change: transform;
   }
 
   /* ── OUTER GLOW RING (pulsing halo) ── */
@@ -523,39 +589,87 @@
   }
   .photo-placeholder svg { opacity: .4; }
 
-  /* Floating cards — z-index 20 agar selalu di atas semua layer foto */
-  .float-card {
+  /* ── ORBIT ROLE BADGES ──
+     Orbit berpusat di foto. Tiap .orbit-arm diputar ke sudutnya (--a) lalu
+     didorong keluar sejauh --r; .orbit berputar pelan, sedangkan .float-card
+     diputar balik dengan kecepatan sama agar teks tetap tegak. */
+  .orbit {
+    --r: 235px;
+    position: absolute; left: 50%; top: 50%;
+    width: 0; height: 0;
+    z-index: 20;
+    animation: orbit-spin 32s linear infinite;
+    pointer-events: none;
+  }
+  .orbit::before {
+    content: '';
     position: absolute;
+    left: calc(var(--r) * -1); top: calc(var(--r) * -1);
+    width: calc(var(--r) * 2); height: calc(var(--r) * 2);
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.1);
+  }
+  .orbit-arm {
+    position: absolute; left: 0; top: 0;
+    transform: rotate(var(--a)) translateX(var(--r));
+  }
+  .float-card {
+    position: absolute; left: 0; top: 0;
+    transform: translate(-50%, -50%) rotate(calc(var(--a) * -1));
+    animation: orbit-counter 32s linear infinite;
     display: flex; align-items: center; gap: 10px;
-    padding: 10px 16px; border-radius: 12px;
-    background: rgba(8, 15, 35, 0.82);
-    border: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 16px 8px 8px; border-radius: 14px;
+    background: linear-gradient(155deg, rgba(255,255,255,0.08), rgba(10,16,36,0.9));
+    border: 1px solid rgba(255,255,255,0.14);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     font-size: .82rem; font-weight: 600; color: #fff;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.5), 0 0 22px var(--fc-glow, transparent);
     white-space: nowrap;
-    z-index: 20;        /* ← di atas photo-bg (z-index 2) dan photo-frame (z-index 4) */
+    overflow: hidden;
+    pointer-events: auto;
+    transition: box-shadow .25s ease;
+  }
+  .float-card:hover {
+    box-shadow: 0 14px 40px rgba(0,0,0,0.55), 0 0 32px var(--fc-glow, transparent);
+  }
+  .float-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(100deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
+    transform: translateX(-130%);
+    animation: fc-shimmer 6s ease-in-out infinite;
+    pointer-events: none;
   }
   .float-card .fc-icon {
-    width: 34px; height: 34px; border-radius: 8px;
+    position: relative;
+    width: 34px; height: 34px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
+    font-size: 1rem; flex-shrink: 0; color: #fff;
+    background: linear-gradient(135deg, var(--fc-c1), var(--fc-c2));
+    box-shadow: 0 4px 16px var(--fc-glow);
   }
 
-  /* Posisi digeser lebih keluar agar terlihat menonjol di luar border */
-  .float-card.fc-dev  { top: 10%;    left: -28%;  animation-delay: 0s; }
-  .float-card.fc-data { bottom: 20%; left: -26%;  animation-delay: 1.2s; }
-  .float-card.fc-ml   { top: 30%;    right: -26%; animation-delay: 0.6s; }
+  .fc-dev  { --fc-c1: #3b82f6; --fc-c2: #06b6d4; --fc-glow: rgba(59,130,246,0.4); }
+  .fc-data { --fc-c1: #6366f1; --fc-c2: #8b5cf6; --fc-glow: rgba(99,102,241,0.4); }
+  .fc-ml   { --fc-c1: #a855f7; --fc-c2: #ec4899; --fc-glow: rgba(168,85,247,0.4); }
+  .fc-data::after { animation-delay: 2s; }
+  .fc-ml::after   { animation-delay: 3.4s; }
 
-  .fc-dev .fc-icon  { background: rgba(59,130,246,0.2);  color: var(--blue); }
-  .fc-data .fc-icon { background: rgba(99,102,241,0.2);  color: #818cf8; }
-  .fc-ml .fc-icon   { background: rgba(168,85,247,0.2);  color: #c084fc; }
-
-  @keyframes float {
-    0%,100% { transform: translateY(0px); }
-    50%      { transform: translateY(-10px); }
+  @keyframes orbit-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes orbit-counter {
+    from { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1)); }
+    to   { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1 - 360deg)); }
+  }
+  @keyframes fc-shimmer {
+    0%, 20%   { transform: translateX(-130%); }
+    40%, 100% { transform: translateX(130%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit, .float-card { animation: none; }
+    .float-card::after { animation: none; display: none; }
   }
 
   /* ── STATS STRIP ── */
@@ -1482,7 +1596,7 @@
     }
     /* Floating info cards & particle fx are decorative and sized for desktop —
        hide them on narrower viewports so nothing overflows or gets clipped */
-    .float-card, .photo-particles { display: none; }
+    .orbit, .photo-particles { display: none; }
 
     .stats-strip { padding: 0 20px 40px; }
     section { padding: 20px 20px 40px; }

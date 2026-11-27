@@ -106,7 +106,10 @@
       <canvas class="hero-name-canvas" id="heroNameCanvas" aria-hidden="true"></canvas>
       <span class="hero-name-text" id="heroNameText">Muhammad<br><span class="highlight">Firza</span> Pahlevi</span>
     </h1>
-    <p class="hero-roles fade-up">Software Developer | Fullstack Developer | Data Analyst</p>
+    <p class="hero-roles fade-up" id="heroRoles">
+      <span class="hero-roles-visible" aria-hidden="true"><span class="hero-roles-word" id="heroRolesWord">Software Developer</span></span>
+      <span class="sr-only">Software Developer, Fullstack Developer, Data Analyst</span>
+    </p>
     <!-- <p class="hero-desc fade-up">Information Systems graduate with a strong interest in data analytics. Experienced in data analysis and visualization through the Data Analytics for Business program at Bitlabs Academy, as well as application development during an internship at Bank Central Asia (BCA). Passionate about transforming data into meaningful insights to support better business decisions.</p>
     -->
     <div class="hero-cta fade-up">
@@ -161,26 +164,25 @@
         <img class="photo-img" src="assets/Profile.png" alt="Muhammad Firza Pahlevi">
       </div>
 
-      <!-- Floating cards -->
-      <div class="float-card fc-dev">
-        <div class="fc-icon">⟨/⟩</div>
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Interest</div>
-          <div>Software Developer</div>
+      <!-- Orbiting role badges -->
+      <div class="orbit" aria-hidden="true">
+        <div class="orbit-arm" style="--a:270deg">
+          <div class="float-card fc-dev">
+            <div class="fc-icon">⟨/⟩</div>
+            <span>Software Developer</span>
+          </div>
         </div>
-      </div>
-      <div class="float-card fc-data">
-        <div class="fc-icon">🌐</div>
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Interest</div>
-          <div>Fullstack Developer</div>
+        <div class="orbit-arm" style="--a:30deg">
+          <div class="float-card fc-data">
+            <div class="fc-icon">🌐</div>
+            <span>Fullstack Developer</span>
+          </div>
         </div>
-      </div>
-      <div class="float-card fc-ml">
-        <div class="fc-icon">📊</div>
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Interest</div>
-          <div>Data Analyst</div>
+        <div class="orbit-arm" style="--a:150deg">
+          <div class="float-card fc-ml">
+            <div class="fc-icon">📊</div>
+            <span>Data Analyst</span>
+          </div>
         </div>
       </div>
     </div>

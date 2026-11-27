@@ -314,3 +314,51 @@ function tutupModalPDF() {
     });
   });
 })();
+
+// ── Hero roles: slide-and-crossfade through role titles ──
+(function () {
+  const wordEl = document.getElementById('heroRolesWord');
+  if (!wordEl) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  const roles = ['Software Developer', 'Fullstack Developer', 'Data Analyst'];
+  let roleIndex = 0;
+
+  function cycle() {
+    wordEl.classList.add('is-out-up');
+    setTimeout(() => {
+      roleIndex = (roleIndex + 1) % roles.length;
+      wordEl.textContent = roles[roleIndex];
+      wordEl.classList.remove('is-out-up');
+      wordEl.classList.add('is-in-bottom');
+      // Force reflow so the next class removal actually transitions in.
+      void wordEl.offsetWidth;
+      wordEl.classList.remove('is-in-bottom');
+    }, 400);
+  }
+  setInterval(cycle, 2800);
+})();
+
+// ── Hero photo: subtle parallax tilt following the cursor ──
+(function () {
+  const wrap = document.querySelector('.hero .photo-wrap');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!wrap || !canHover || reduceMotion) return;
+
+  const MAX_TILT = 8; // degrees
+  const heroRight = wrap.closest('.hero-right') || wrap.parentElement;
+
+  heroRight.addEventListener('mousemove', (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const rotateY = x * MAX_TILT * 2;
+    const rotateX = -y * MAX_TILT * 2;
+    wrap.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  heroRight.addEventListener('mouseleave', () => {
+    wrap.style.transform = '';
+  });
+})();
